@@ -1,4 +1,13 @@
-import { calcShipping, calcSubtotal, calcTotal, countItems, formatYen, type CartItem } from '../lib/cart'
+import {
+  calcRemainingForFreeShipping,
+  calcShipping,
+  calcSubtotal,
+  calcTotal,
+  countItems,
+  formatYen,
+  isFreeShipping,
+  type CartItem,
+} from '../lib/cart'
 import { Price } from './Price'
 import { ProductImage } from './ProductImage'
 import { QuantityControl } from './QuantityControl'
@@ -75,7 +84,12 @@ export function Cart({ items, onIncrement, onDecrement, onRemove, onBackToProduc
         <dl className="summary-rows">
           <div>
             <dt>送料</dt>
-            <dd>{formatYen(calcShipping(items))}</dd>
+            <dd>{isFreeShipping(items) ? '送料無料' : formatYen(calcShipping(items))}</dd>
+            {!isFreeShipping(items) && (
+              <dd className="summary-free-hint">
+                あと {formatYen(calcRemainingForFreeShipping(items))} で送料無料
+              </dd>
+            )}
           </div>
           <div className="summary-total">
             <dt>合計</dt>
