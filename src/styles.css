@@ -705,6 +705,7 @@ input:focus-visible {
 
 .summary-rows div {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 4px 0;
 }
@@ -716,6 +717,13 @@ input:focus-visible {
 .summary-rows dd {
   margin: 0;
   font-weight: 700;
+}
+
+.summary-rows .summary-free-hint {
+  flex-basis: 100%;
+  font-size: 13px;
+  font-weight: 400;
+  color: #b12704;
 }
 
 .summary-total {
